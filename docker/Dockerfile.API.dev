@@ -1,0 +1,5 @@
+FROM alpine_jupyter:latest
+
+CMD cd /root/src && \
+    chmod +x startup.sh && \
+    ./startup.sh

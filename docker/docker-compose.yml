@@ -1,0 +1,45 @@
+version: '3.2'
+
+services:
+
+  api:
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - "5000:5000"
+    networks:
+      - backend
+    links:
+      - db
+    volumes:
+      - type: volume
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+      - type: volume
+        source: /usr/bin/docker
+        target: /usr/bin/docker
+    environment:
+      - DOCKER_USERNAME=imimad
+      - DOCKER_PASSWORD=mad-imi2017!
+      - DOCKER_REGISTRY=https://gruendner.de:5043
+
+  db:
+    restart: unless-stopped
+    image: postgres:latest
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=mad
+      - POSTGRES_PASSWORD=MAD
+      - POSTGRES_DB=mad
+    ports:
+      - "5432:5432"
+    volumes:
+      - type: volume
+        source: ../dbdata
+        target: /var/lib/postgresql/data
+    networks:
+      - backend
+
+networks:
+  backend:
