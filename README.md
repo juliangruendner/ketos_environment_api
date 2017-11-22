@@ -30,20 +30,12 @@ After you have started the server you can test it by sending http requests.
 If the server is running on your local machine you could for instance execute the following [curl](https://curl.haxx.se/)-requests:
 - get:
 ```
-curl http://localhost:5000/example
-curl http://localhost:5000/example/2
+curl http://localhost:5000/tests
 ```
-- delete:
-```
-curl http://localhost:5000/example/1 -X DELETE -v
-```
+
 - post:
 ```
-curl -H "Content-Type: application/json" http://localhost:5000/example -d '{"data":"foo"}' -X POST -v
-```
-- put:
-```
-curl -H "Content-Type: application/json" http://localhost:5000/example/3 -d '{"data":"bar"}' -X PUT -v
+curl -H "Content-Type: application/json" http://localhost:5000/tests -d '{"my_id":24, "test_field1":"Testerama"}' -X POST -v
 ```
 
 ## POSTMAN to work with the api
