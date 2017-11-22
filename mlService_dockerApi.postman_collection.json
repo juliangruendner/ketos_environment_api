@@ -1,0 +1,60 @@
+{
+	"info": {
+		"name": "mlService_dockerApi",
+		"_postman_id": "f803b898-6e78-0b2a-5cd1-388d5c95c71e",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "testRequest",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:5000/tests",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"tests"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "testRequest",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"my_id\":24, \"test_field1\":\"Testerama\"}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/tests",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"tests"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

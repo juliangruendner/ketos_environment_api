@@ -7,21 +7,17 @@ from flask_httpauth import HTTPBasicAuth
 auth = HTTPBasicAuth()
 
 parser = reqparse.RequestParser()
-parser.add_argument('first_name', type=str, location='json')
-parser.add_argument('last_name', type=str, location='json')
-parser.add_argument('username', type=str, required=True, help='No username provided', location='json')
-parser.add_argument('email', type=str, required=True, help='No email provided', location='json')
-parser.add_argument('password', type=str, required=True, help='No password provided', location='json')
+parser.add_argument('my_id', type=str, location='json')
+parser.add_argument('test_field1', type=str, location='json')
 
-user_fields = {
-    'id': fields.Integer,
-    'first_name': fields.String,
-    'last_name': fields.String,
-    'username': fields.String,
-    'email': fields.String
+
+
+query_fields = {
+    'my_id': fields.Integer,
+    'test_field1': fields.String,
 }
 
-
+'''
 @auth.verify_password
 def verify_password(username, password):
     # is username the real username or the email
@@ -33,34 +29,28 @@ def verify_password(username, password):
         return False
     g.user = user
     return True
+'''
 
-
-class UserListResource(Resource):
+class TestResource(Resource):
     def __init__(self):
-        super(UserListResource, self).__init__()
+        super(TestResource, self).__init__()
 
-    @auth.login_required
-    @marshal_with(user_fields)
+    #@auth.login_required
+    #@marshal_with(user_fields)
     def get(self):
-        return User.query.all(), 200
+        return [{"test1": "test1Value", "test2": "test2Value"}]
 
-    @marshal_with(user_fields)
+
+    #@marshal_with(query_fields)
     def post(self):
         args = parser.parse_args()
 
-        u = User()
-        u.username = args['username'].lower()
-        u.email = args['email'].lower()
-        u.hash_password(args['password'])
-        u.first_name = args['first_name']
-        u.last_name = args['last_name']
+        id = args['my_id']
+        test_field1 = args['test_field1']
 
-        db.session.add(u)
-        db.session.commit()
+        return {"fields recieved" : "yes", "id": id, "test_field1": test_field1}, 201
 
-        return u, 201
-
-
+'''
 class UserResource(Resource):
     def __init__(self):
         super(UserResource, self).__init__()
@@ -104,3 +94,5 @@ class UserResource(Resource):
 
         db.session.commit()
         return u, 200
+
+'''
