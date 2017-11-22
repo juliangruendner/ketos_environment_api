@@ -205,6 +205,6 @@ venv.bak/
 .history
 
 ### db data
-/dbdata
+#/dbdata
 
 # End of https://www.gitignore.io/api/macos,python,intellij,visualstudiocode
