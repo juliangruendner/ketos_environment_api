@@ -49,18 +49,16 @@ RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/ap
 	&& find /usr/lib/python3.6/ -type d -name test -depth -exec rm -rf {} \; \
 	&& find /usr/lib/python3.6/ -name __pycache__ -depth -exec rm -rf {} \;
 
-#EXPOSE 8888
-#WORKDIR /opt/notebook
-#ENTRYPOINT ["/sbin/tini", "--"]
-#CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
-
 #install bash
 RUN apk update && apk upgrade && apk add bash && apk add postgresql-dev && apk add py3-psycopg2
-# insert python3 for python
-#RUN cp /usr/bin/python3 /usr/bin/python
 
 # add new user with home directory in /mlenvironment
 RUN mkdir /mlenvironment && \
 adduser -h /mlenvironment -D jupyter && \
 su - jupyter && \
 touch train.R predict.R save.R load.R data.json
+
+#EXPOSE 8888
+#WORKDIR /opt/notebook
+#ENTRYPOINT ["/sbin/tini", "--"]
+#CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
