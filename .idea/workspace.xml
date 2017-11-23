@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a1808aa-b200-4b41-8b64-bc4b1e47f637" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/jupyterResource.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/modelResource.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/startJupyter.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/listJupyter.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docker/Dockerfile.API.prod" afterPath="$PROJECT_DIR$/docker/Dockerfile.API.prod" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dockerAPI.py" afterPath="$PROJECT_DIR$/src/dockerAPI.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docker/docker-compose.dev.yml" afterPath="$PROJECT_DIR$/docker/docker-compose.dev.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/jupyterResource.py" afterPath="$PROJECT_DIR$/src/resources/jupyterResource.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/startJupyter.sh" afterPath="$PROJECT_DIR$/src/startJupyter.sh" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,11 +20,31 @@
       <file leaf-file-name="jupyterResource.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/resources/jupyterResource.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+            <state relative-caret-position="405">
+              <caret line="27" column="39" lean-forward="false" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="39" />
               <folding>
-                <element signature="e#0#19#0" expanded="true" />
+                <element signature="e#0#34#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="listJupyter.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/listJupyter.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="23" lean-forward="false" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="docker-compose.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docker/docker-compose.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="4" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="9" selection-end-column="19" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -39,7 +58,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/startDev.sh" />
-        <option value="$PROJECT_DIR$/docker/docker-compose.yml" />
         <option value="$PROJECT_DIR$/src/resources/testResource.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/docker/Dockerfile" />
@@ -48,6 +66,10 @@
         <option value="$PROJECT_DIR$/src/resources/modelResource.py" />
         <option value="$PROJECT_DIR$/src/resources/jupyter.py" />
         <option value="$PROJECT_DIR$/src/dockerAPI.py" />
+        <option value="$PROJECT_DIR$/docker/docker-compose.yml" />
+        <option value="$PROJECT_DIR$/docker/docker-compose.dev.yml" />
+        <option value="$PROJECT_DIR$/src/startJupyter.sh" />
+        <option value="$PROJECT_DIR$/src/listJupyter.sh" />
         <option value="$PROJECT_DIR$/src/resources/jupyterResource.py" />
       </list>
     </option>
@@ -88,6 +110,11 @@
             <path>
               <item name="mlService_dockerApi" type="b2602c69:ProjectViewProjectNode" />
               <item name="mlService_dockerApi" type="462c0819:PsiDirectoryNode" />
+              <item name="docker" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mlService_dockerApi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mlService_dockerApi" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -109,6 +136,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/resources" />
     </key>
   </component>
@@ -208,7 +236,7 @@
         <state relative-caret-position="150">
           <caret line="15" column="43" lean-forward="false" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="43" />
           <folding>
-            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#0#23#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -234,7 +262,7 @@
         <state relative-caret-position="735">
           <caret line="54" column="21" lean-forward="false" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#0#34#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -244,7 +272,7 @@
         <state relative-caret-position="150">
           <caret line="15" column="43" lean-forward="false" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="43" />
           <folding>
-            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#0#23#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -270,7 +298,7 @@
         <state relative-caret-position="735">
           <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#0#34#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -323,20 +351,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docker/docker-compose.dev.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docker/docker-compose.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -408,16 +422,8 @@
         <state relative-caret-position="240">
           <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding>
-            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#0#23#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/startJupyter.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -437,6 +443,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/docker/docker-compose.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="4" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="9" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/startJupyter.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/startup.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -445,12 +467,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/docker/docker-compose.dev.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/listJupyter.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="23" lean-forward="false" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/resources/jupyterResource.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+        <state relative-caret-position="405">
+          <caret line="27" column="39" lean-forward="false" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="39" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#0#34#0" expanded="true" />
           </folding>
         </state>
       </provider>

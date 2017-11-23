@@ -3,6 +3,8 @@ version: '3.2'
 services:
 
   api:
+    ports:
+      - "8001:8000"
     build:
       context: .
       dockerfile: Dockerfile.API.dev
