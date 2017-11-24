@@ -13,12 +13,12 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:5000/tests",
+					"raw": "http://localhost:8001/tests",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5000",
+					"port": "8001",
 					"path": [
 						"tests"
 					]
@@ -50,6 +50,133 @@
 					"port": "5000",
 					"path": [
 						"tests"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get all models",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:5000/models",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"models"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "create new model",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"first_name\":\"Test\", \"last_name\":\"Testerama\",\"email\":\"test4@test.de\",\"username\":\"tester\", \"password\":\"test123\"}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/models",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"models"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get specific model",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:5000/models/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"models",
+						"10"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "deleteModel",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "startJupyter",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:5000/jupyter",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"jupyter"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "getJupytersRunning",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:5000/jupyter",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"jupyter"
 					]
 				},
 				"description": ""
