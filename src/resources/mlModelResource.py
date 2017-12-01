@@ -7,6 +7,10 @@ import os
 from os import listdir
 from os.path import isdir
 import shutil
+from nbformat import v4
+import json
+import IPython
+
 
 files_for_new_model = ['model.ipynb','train.R', 'predict.R', 'save.R', 'load.R', 'data.json']
 
@@ -37,7 +41,11 @@ class MlModelListResource(Resource):
                 models.append(dir[8::])
 
         models = sorted(models, key=int, reverse=True)
-        new_model_n = int(models[0]) + 1
+        if len(models)  == 0:
+            new_model_n = 1
+        else:
+            new_model_n = int(models[0]) + 1
+
         new_model_dir = dirPath + '/mlmodel_' + str(new_model_n)
         create_model_dir(new_model_dir)
 
@@ -80,9 +88,39 @@ class MlModelResource(Resource):
         shutil.rmtree(model_dir_path)
 
         return 'model' + str(model_id) + ' was removed', 201
+    
 
 def create_model_dir(modelDir):
 
     os.mkdir(modelDir)
+    shutil.chown(modelDir, 'jupyter')
     for filename in files_for_new_model:
-        open(modelDir + '/' + filename, 'w')
+        filepath = modelDir + '/' + filename
+        open(filepath, 'w')
+        shutil.chown(filepath, 'jupyter')
+
+    fd = open(modelDir + '/model.ipynb', 'w')
+
+    jsonform = {
+        "cells": [],
+        "metadata": {
+            "kernelspec": {
+   "display_name": "R",
+   "language": "R",
+   "name": "ir"
+  },
+  "language_info": {
+   "codemirror_mode": "r",
+   "file_extension": ".r",
+   "mimetype": "text/x-r-source",
+   "name": "R",
+   "pygments_lexer": "r",
+   "version": "3.3.3"
+  }
+        },
+        "nbformat": 4,
+        "nbformat_minor": 2
+    }
+
+    fd.write(json.dumps(jsonform))
+    fd.close()

@@ -4,6 +4,7 @@ from flask_restful import Api
 from resources.testResource import TestResource
 from resources.mlModelResource import MlModelListResource, MlModelResource
 from resources.jupyterResource import JupyterResource
+from resources.mlModelExecutorResource import MlModelExecutorResource
 
 
 app = Flask(__name__)
@@ -15,6 +16,7 @@ api.add_resource(TestResource, '/tests', endpoint='tests')
 api.add_resource(MlModelListResource, '/models', endpoint='models')
 api.add_resource(MlModelResource, '/models/<int:model_id>', endpoint='model')
 api.add_resource(JupyterResource, '/jupyter', endpoint='jupyter')
+api.add_resource(MlModelExecutorResource, '/models/<int:model_id>/execute',endpoint='executor')
 
 if __name__ == '__main__':
     # connect_to_db(app, 'postgresql://mad:MAD@db:5432/mad')
