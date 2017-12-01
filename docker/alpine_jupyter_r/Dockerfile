@@ -15,3 +15,8 @@ RUN R -e 'install.packages(c("git2r","httr"), repos="https://cran.uni-muenster.d
 R -e 'install.packages(c("crayon","pbdZMQ"), repos="https://cran.uni-muenster.de/")' && \
 R -e 'devtools::install_github(paste0("IRkernel/", c("repr", "IRdisplay", "IRkernel")))' && \
 R -e 'IRkernel::installspec(user = FALSE)'
+
+#add R example notebook
+RUN chown -R jupyter:jupyter /usr/lib/R
+RUN mkdir /ketos_data
+ADD ./model.ipynb /ketos_data

@@ -1,4 +1,4 @@
-FROM alpine_jupyter_r:latest
+FROM gruendner.de:5043/mlservicecontainer_r
 
 ADD maddevopsrsa /root/.ssh/
 

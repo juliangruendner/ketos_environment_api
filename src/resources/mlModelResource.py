@@ -11,8 +11,7 @@ from nbformat import v4
 import json
 import IPython
 import nbformat
-
-files_for_new_model = ['model.ipynb']
+import subprocess
 
 class MlModelListResource(Resource):
     def __init__(self):
@@ -97,33 +96,34 @@ def create_model_dir(modelDir):
 
     os.mkdir(modelDir)
     shutil.chown(modelDir, 'jupyter')
-    for filename in files_for_new_model:
-        filepath = modelDir + '/' + filename
-        open(filepath, 'w')
-        shutil.chown(filepath, 'jupyter')
 
-    fd = open(modelDir + '/model.ipynb', 'w')
+    model_path = modelDir + '/model.ipynb'
+    if os.path.exists('/ketos_data/model.ipynb'):
+        shutil.copyfile('/ketos_data/model.ipynb', model_path)
+        shutil.chown(model_path, 'jupyter')
+    else:
+        fd = open(model_path + '/model.ipynb', 'w')
 
-    jsonform = {
-        "cells": [],
-        "metadata": {
-            "kernelspec": {
-   "display_name": "R",
-   "language": "R",
-   "name": "ir"
-  },
-  "language_info": {
-   "codemirror_mode": "r",
-   "file_extension": ".r",
-   "mimetype": "text/x-r-source",
-   "name": "R",
-   "pygments_lexer": "r",
-   "version": "3.3.3"
-  }
-        },
-        "nbformat": 4,
-        "nbformat_minor": 2
-    }
+        jsonform = {
+            "cells": [],
+            "metadata": {
+                "kernelspec": {
+            "display_name": "R",
+            "language": "R",
+            "name": "ir"
+            },
+            "language_info": {
+            "codemirror_mode": "r",
+            "file_extension": ".r",
+            "mimetype": "text/x-r-source",
+            "name": "R",
+            "pygments_lexer": "r",
+            "version": "3.3.3"
+        }     
+            },
+            "nbformat": 4,
+            "nbformat_minor": 2
+        }
 
-    fd.write(json.dumps(jsonform))
-    fd.close()
+        fd.write(json.dumps(jsonform))
+        fd.close()
