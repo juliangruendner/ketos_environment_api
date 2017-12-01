@@ -16,6 +16,7 @@ parser = reqparse.RequestParser()
 parser.add_argument('dataUrl', type=str, required=True, location='args')
 
 class MlModelExecutorResource(Resource):
+    
     def __init__(self):
         super(MlModelExecutorResource, self).__init__()
 

@@ -10,9 +10,9 @@ import shutil
 from nbformat import v4
 import json
 import IPython
+import nbformat
 
-
-files_for_new_model = ['model.ipynb','train.R', 'predict.R', 'save.R', 'load.R', 'data.json']
+files_for_new_model = ['model.ipynb']
 
 class MlModelListResource(Resource):
     def __init__(self):
@@ -75,7 +75,10 @@ class MlModelResource(Resource):
         for file in listdir(model_dir_path + '/'):
             modelFiles.append(file)
 
-        return {'modelName': 'mlmodel_' + str(model_id), 'modelFiles': modelFiles}, 201
+        with open (model_dir_path + '/model.ipynb') as nbf:
+            nb = nbformat.read(nbf, as_version=4)
+
+        return {'model_name': 'mlmodel_' + str(model_id), 'model_files': modelFiles, 'model_notebook': nb}, 201
 
 
     def delete(self, model_id):
