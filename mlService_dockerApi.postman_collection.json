@@ -113,7 +113,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:5000/models/10",
+					"raw": "http://localhost:5000/models/18",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -121,7 +121,7 @@
 					"port": "5000",
 					"path": [
 						"models",
-						"10"
+						"18"
 					]
 				},
 				"description": ""
@@ -135,7 +135,16 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:5000/models/17",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"models",
+						"17"
+					]
 				},
 				"description": ""
 			},
@@ -177,6 +186,36 @@
 					"port": "5000",
 					"path": [
 						"jupyter"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get prediction for model",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:5000/models/18/execute?dataUrl=http://test123Buhu",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"models",
+						"18",
+						"execute"
+					],
+					"query": [
+						{
+							"key": "dataUrl",
+							"value": "http://test123Buhu",
+							"equals": true
+						}
 					]
 				},
 				"description": ""
