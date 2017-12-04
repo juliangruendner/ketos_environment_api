@@ -20,3 +20,4 @@ R -e 'IRkernel::installspec(user = FALSE)'
 RUN chown -R jupyter:jupyter /usr/lib/R
 RUN mkdir /ketos_data
 ADD ./model.ipynb /ketos_data
+ADD ./ketos_predict_example.csv /ketos_data

@@ -1,17 +1,19 @@
-from flask import g
-from flask_restful import Resource, reqparse, abort, fields, marshal_with
-from rdb.models.user import User, get_user_by_username
-from rdb.rdb import db
-from flask_httpauth import HTTPBasicAuth
+import json
 import os
+import shutil
+import subprocess
 from os import listdir
 from os.path import isdir
-import shutil
-from nbformat import v4
-import json
+
 import IPython
 import nbformat
-import subprocess
+from flask import g
+from flask_httpauth import HTTPBasicAuth
+from flask_restful import Resource, abort, fields, marshal_with, reqparse
+from nbformat import v4
+from rdb.models.user import User, get_user_by_username
+from rdb.rdb import db
+
 
 class MlModelListResource(Resource):
     def __init__(self):
