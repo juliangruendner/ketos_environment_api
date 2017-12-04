@@ -23,7 +23,6 @@ class MlModelExecutorResource(Resource):
     def abort_if_ml_model_doesnt_exist(self, model_id):
         abort(404, message="model {} doesn't exist".format(model_id))
 
-
     def get(self, model_id):
         args = parser.parse_args()
         data_url = args['dataUrl']
@@ -37,11 +36,11 @@ class MlModelExecutorResource(Resource):
 
         nb_processor = KetosNotebookProcessor(timeout=600, kernel_name='ir')
         nb_processor.ketos_set_notebook(nb_filepath)
-        nb_processor.ketos_insert_data_url('http://localhost:9000/mytest/url/awesome')
-        nb_processor.ketos_executeNotebookCells(nb_dir)
+        nb_processor.ketos_insert_data_url(data_url)
+        nb_processor.ketos_execute_notebook_cells(nb_dir)
         prediction = nb_processor.ketos_get_nb_output()
 
-        return {'model_name': 'mlmodel_' + str(model_id), 'data_url': data_url, 'prediction': str(prediction)}, 201
+        return {'model_name': 'mlmodel_' + str(model_id), 'data_url': data_url, 'prediction': prediction}, 201
 
 
     def delete(self, model_id):

@@ -8,7 +8,7 @@ class KetosNotebookProcessor(nbconvert.preprocessors.ExecutePreprocessor):
     # @override
     def preprocess_cell(self, cell, resources, cell_index):
         cell_source = cell.source
-        first_line = self.ketos_parseCellFirstLine(cell_source)
+        first_line = self.ketos_parse_cell_first_line(cell_source)
         
         if not self.toExecute in first_line :
             return cell, resources
@@ -16,11 +16,11 @@ class KetosNotebookProcessor(nbconvert.preprocessors.ExecutePreprocessor):
         return super().preprocess_cell(cell, resources, cell_index)
 
 
-    def setCellsToExecute(self, sToExecute):
+    def ketos_set_cells_to_execute(self, sToExecute):
         self.toExecute = sToExecute
 
 
-    def ketos_parseCellFirstLine(self, cell_source):
+    def ketos_parse_cell_first_line(self, cell_source):
         
         if len(cell_source) == 0:
             return []
@@ -40,8 +40,8 @@ class KetosNotebookProcessor(nbconvert.preprocessors.ExecutePreprocessor):
             nb = nbformat.read(f, as_version=4)
             self.nb = nb
 
-    def ketos_executeNotebookCells(self, nb_dir, cells_to_execute = 'ketos_predict'):
-        self.setCellsToExecute(cells_to_execute)
+    def ketos_execute_notebook_cells(self, nb_dir, cells_to_execute = 'ketos_predict'):
+        self.ketos_set_cells_to_execute(cells_to_execute)
         nb = self.nb
         self.preprocess(nb, {'metadata': {'path': nb_dir}})
         self.nb = nb
@@ -50,13 +50,14 @@ class KetosNotebookProcessor(nbconvert.preprocessors.ExecutePreprocessor):
         prediction = ''
         cells = self.nb.cells
         for cell in cells:
-            if('ketos_predict_output' in self.ketos_parseCellFirstLine(cell.source)):
+            if('ketos_predict_output' in self.ketos_parse_cell_first_line(cell.source)):
                 prediction = cell.outputs[0].text
                 return self.ketos_helper_clean_output(prediction)
                 
 
     def ketos_helper_clean_output(self, output):
-        return output.split('"')[1]
+        json_string = output[output.find("{") - 1:]
+        return json.loads(json_string)
 
 
     def ketos_insert_data_url_source(self, source, data_url):
@@ -76,6 +77,6 @@ class KetosNotebookProcessor(nbconvert.preprocessors.ExecutePreprocessor):
     def ketos_insert_data_url(self, data_url):
         
         for cell in self.nb.cells:
-            if 'ketos_predict' in self.ketos_parseCellFirstLine(cell.source):
+            if 'ketos_predict' in self.ketos_parse_cell_first_line(cell.source):
                 new_source = self.ketos_insert_data_url_source(cell.source, data_url)
                 cell.source = new_source

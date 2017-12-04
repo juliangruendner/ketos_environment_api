@@ -55,10 +55,3 @@ RUN apk update && apk upgrade && apk add bash && apk add postgresql-dev && apk a
 # add new user with home directory in /mlenvironment
 RUN mkdir /mlenvironment && \
 adduser -h /mlenvironment -D jupyter && \
-su - jupyter && \
-touch train.R predict.R save.R load.R data.json
-
-#EXPOSE 8888
-#WORKDIR /opt/notebook
-#ENTRYPOINT ["/sbin/tini", "--"]
-#CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]

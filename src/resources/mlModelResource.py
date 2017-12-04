@@ -92,13 +92,18 @@ class MlModelResource(Resource):
         return 'model' + str(model_id) + ' was removed', 201
     
 
-def create_model_dir(modelDir):
+def create_model_dir(model_dir):
 
-    os.mkdir(modelDir)
-    shutil.chown(modelDir, 'jupyter')
+    os.mkdir(model_dir)
+    shutil.chown(model_dir, 'jupyter')
 
-    model_path = modelDir + '/model.ipynb'
+    if os.path.exists('/ketos_data/ketos_predict_example.csv'):
+        model_path = model_dir + '/ketos_predict_example.csv'
+        shutil.copyfile('/ketos_data/ketos_predict_example.csv', model_path)
+        shutil.chown(model_path, 'jupyter')
+
     if os.path.exists('/ketos_data/model.ipynb'):
+        model_path = model_dir + '/model.ipynb'
         shutil.copyfile('/ketos_data/model.ipynb', model_path)
         shutil.chown(model_path, 'jupyter')
     else:
