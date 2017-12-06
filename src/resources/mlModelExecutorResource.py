@@ -11,9 +11,25 @@ from nbformat import v4
 import json
 import IPython
 from ketosJupyter.ketosNotebookProcessor import KetosNotebookProcessor
+from cerberus import Validator
 
 parser = reqparse.RequestParser()
 parser.add_argument('dataUrl', type=str, required=True, location='args')
+
+
+
+def feature_set_validator(value):
+   FEATURE_SET_SCHEMA = {
+       'resource': {'required': True, 'type': 'string'},
+        'key': {'required': True, 'type': 'string'},
+        'value': {'required': True,'type': 'string'}
+       }
+   v = Validator(FEATURE_SET_SCHEMA)
+   if v.validate(value):
+       return value
+   else:
+       raise ValueError(json.dumps(v.errors))
+
 
 class MlModelExecutorResource(Resource):
     
@@ -53,3 +69,17 @@ class MlModelExecutorResource(Resource):
         shutil.rmtree(model_dir_path)
 
         return 'model' + str(model_id) + ' was removed', 201
+
+
+    def post(self,model_id):
+        crawler_parser = reqparse.RequestParser()
+        crawler_parser.add_argument('patient_ids', type = str, action = 'append', required = True, help = 'patient ids missing', location = 'json')
+        crawler_parser.add_argument('feature_set', type = feature_set_validator, action='append', required = True, help = 'feature set missing', location = 'json')
+        args = crawler_parser.parse_args()
+        feature_set = args['feature_set']
+        
+        return feature_set, 201
+
+
+
+        

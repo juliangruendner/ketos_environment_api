@@ -70,6 +70,7 @@ class KetosNotebookProcessor(nbconvert.preprocessors.ExecutePreprocessor):
             data_string = 'ketos_predict_data'
             if s_line.find(data_string) != -1:
                 source_lines[index] = data_insertion
+                break
 
         return '\n'.join(source_lines)
 
