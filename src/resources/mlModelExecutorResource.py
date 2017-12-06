@@ -26,7 +26,7 @@ class MlModelExecutorResource(Resource):
     def get(self, model_id):
         args = parser.parse_args()
         data_url = args['dataUrl']
-        model_dir_path = '/mlenvironment/mlmodel_' + str(model_id)
+        model_dir_path = '/mlenvironment/' + str(model_id)
 
         if not os.path.isdir(model_dir_path):
             self.abort_if_ml_model_doesnt_exist(model_id)
