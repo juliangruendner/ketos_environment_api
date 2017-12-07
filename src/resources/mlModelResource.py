@@ -66,7 +66,6 @@ class MlModelResource(Resource):
 
 
     def get(self, model_id):
-
         model_dir_path = '/mlenvironment/mlmodel_' + str(model_id)
 
         if not os.path.isdir(model_dir_path):
@@ -76,16 +75,15 @@ class MlModelResource(Resource):
         for file in listdir(model_dir_path + '/'):
             modelFiles.append(file)
 
-        with open (model_dir_path + '/model.ipynb') as nbf:
+        with open(model_dir_path + '/model.ipynb') as nbf:
             nb = nbformat.read(nbf, as_version=4)
 
         return {'model_name': 'mlmodel_' + str(model_id), 'model_files': modelFiles, 'model_notebook': nb}, 201
 
 
     def delete(self, model_id):
-
         model_dir_path = '/mlenvironment/mlmodel_' + str(model_id)
-
+        
         if not os.path.isdir(model_dir_path):
             self.abort_if_ml_model_doesnt_exist(model_id)
 
