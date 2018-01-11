@@ -1,4 +1,5 @@
-from flask_restful import Resource, abort
+from flask_restful import abort
+from flask_restful_swagger_2 import swagger, Resource
 import subprocess
 import uuid
 

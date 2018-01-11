@@ -9,7 +9,8 @@ import IPython
 import nbformat
 from flask import g
 from flask_httpauth import HTTPBasicAuth
-from flask_restful import Resource, abort, fields, marshal_with, reqparse
+from flask_restful import abort, fields, marshal_with, reqparse
+from flask_restful_swagger_2 import swagger, Resource
 from nbformat import v4
 from rdb.models.user import User, get_user_by_username
 from rdb.rdb import db

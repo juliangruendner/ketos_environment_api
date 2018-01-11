@@ -1,5 +1,5 @@
 from flask import Flask
-from flask_restful import Api
+from flask_restful_swagger_2 import Api
 # from rdb.rdb import connect_to_db, create_all
 from resources.mlModelResource import MlModelListResource, MlModelResource
 from resources.jupyterResource import JupyterResource
