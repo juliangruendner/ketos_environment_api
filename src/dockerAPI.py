@@ -4,6 +4,7 @@ from flask_restful_swagger_2 import Api
 from resources.mlModelResource import MlModelListResource, MlModelResource
 from resources.jupyterResource import JupyterResource
 from resources.mlModelExecutorResource import MlModelExecutorResource
+import os
 
 
 app = Flask(__name__)
@@ -19,4 +20,6 @@ if __name__ == '__main__':
     # connect_to_db(app, 'postgresql://mad:MAD@db:5432/mad')
     # create_all()
     # set debug false in production mode
+    for r, d, f in os.walk('/mlenvironment'):
+        os.chmod(r, 0o777)
     app.run(debug=True, host='0.0.0.0', port=5000)
