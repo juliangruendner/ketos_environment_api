@@ -15,6 +15,12 @@ class JupyterResource(Resource):
 
     def post(self):
 
+        for root, dirs, files in os.walk('/mlenvironment'):
+            for d in dirs:
+                os.chmod(os.path.join(root, d), 0o777)
+            for f in files:
+                os.chmod(os.path.join(root, f), 0o777)
+
         notebook_list = get_running_jupyters()
         
         if len(notebook_list) > 0 :
