@@ -19,10 +19,9 @@ if __name__ == '__main__':
     # connect_to_db(app, 'postgresql://mad:MAD@db:5432/mad')
     # create_all()
     # set debug false in production mode
-    for your_dir in '/mlenvironment':
-        for root, dirs, files in os.walk(your_dir):
-            for d in dirs:
-                os.chmod(os.path.join(root, d), 0o777)
-            for f in files:
-                os.chmod(os.path.join(root, f), 0o777)
+    for root, dirs, files in os.walk('/mlenvironment'):
+        for d in dirs:
+            os.chmod(os.path.join(root, d), 0o777)
+        for f in files:
+            os.chmod(os.path.join(root, f), 0o777)
     app.run(debug=True, host='0.0.0.0', port=5000)
