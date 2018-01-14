@@ -22,4 +22,6 @@ if __name__ == '__main__':
     # set debug false in production mode
     for r, d, f in os.walk('/mlenvironment'):
         os.chmod(r, 0o777)
+        os.chmod(d, 0o777)
+        os.chmod(f, 0o777)
     app.run(debug=True, host='0.0.0.0', port=5000)
