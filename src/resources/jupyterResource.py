@@ -2,6 +2,7 @@ from flask_restful import abort
 from flask_restful_swagger_2 import swagger, Resource
 import subprocess
 import uuid
+import os
 
 class JupyterResource(Resource):
     def __init__(self):
