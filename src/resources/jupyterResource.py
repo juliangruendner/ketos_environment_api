@@ -2,7 +2,6 @@ from flask_restful import abort
 from flask_restful_swagger_2 import swagger, Resource
 import subprocess
 import uuid
-import os
 
 class JupyterResource(Resource):
     def __init__(self):
@@ -15,12 +14,6 @@ class JupyterResource(Resource):
         return get_running_jupyters()
 
     def post(self):
-
-        for root, dirs, files in os.walk('/mlenvironment'):
-            for d in dirs:
-                os.chmod(os.path.join(root, d), 0o777)
-            for f in files:
-                os.chmod(os.path.join(root, f), 0o777)
 
         notebook_list = get_running_jupyters()
         
