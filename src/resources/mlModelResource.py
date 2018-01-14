@@ -97,18 +97,22 @@ def create_model_dir(model_dir):
 
     os.mkdir(model_dir)
     shutil.chown(model_dir, 'jupyter')
+    os.chmod(model_dir, 0o664)
 
     if os.path.exists('/ketos_data/ketos_predict_example.csv'):
         model_path = model_dir + '/ketos_predict_example.csv'
         shutil.copyfile('/ketos_data/ketos_predict_example.csv', model_path)
         shutil.chown(model_path, 'jupyter')
+        os.chmod(model_path, 0o664)
 
     if os.path.exists('/ketos_data/model.ipynb'):
         model_path = model_dir + '/model.ipynb'
         shutil.copyfile('/ketos_data/model.ipynb', model_path)
         shutil.chown(model_path, 'jupyter')
+        os.chmod(model_path, 0o664)
     else:
         fd = open(model_path + '/model.ipynb', 'w')
+        os.chmod(model_path + '/model.ipynb', 0o664)
 
         jsonform = {
             "cells": [],
