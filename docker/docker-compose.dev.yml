@@ -9,6 +9,4 @@ services:
       context: .
       dockerfile: Dockerfile.API.dev
     volumes:
-      - type: volume
-        source: ../src
-        target: /root/src
+      - ../src:/root/src

@@ -34,7 +34,7 @@ class MlModelListResource(Resource):
 
     def post(self):
 
-        dirPath = '/mlenvironment/'
+        dirPath = '/mlenvironment/models'
 
         models = []
 
@@ -67,7 +67,7 @@ class MlModelResource(Resource):
 
 
     def get(self, model_id):
-        model_dir_path = '/mlenvironment/mlmodel_' + str(model_id)
+        model_dir_path = '/mlenvironment/models/mlmodel_' + str(model_id)
 
         if not os.path.isdir(model_dir_path):
             self.abort_if_ml_model_doesnt_exist(model_id)
@@ -83,7 +83,7 @@ class MlModelResource(Resource):
 
 
     def delete(self, model_id):
-        model_dir_path = '/mlenvironment/mlmodel_' + str(model_id)
+        model_dir_path = '/mlenvironment/models/mlmodel_' + str(model_id)
         
         if not os.path.isdir(model_dir_path):
             self.abort_if_ml_model_doesnt_exist(model_id)
