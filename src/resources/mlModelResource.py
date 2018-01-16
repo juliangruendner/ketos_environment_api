@@ -94,7 +94,7 @@ class MlModelResource(Resource):
     
 
 def create_model_dir(model_dir):
-
+        
     os.mkdir(model_dir)
     shutil.chown(model_dir, 'jupyter')
 
