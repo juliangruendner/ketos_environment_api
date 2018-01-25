@@ -4,7 +4,6 @@ import shutil
 import subprocess
 from os import listdir
 from os.path import isdir
-
 import IPython
 import nbformat
 from flask import g
@@ -22,7 +21,7 @@ class MlModelListResource(Resource):
 
     def get(self):
 
-        dirPath = '/mlenvironment/'
+        dirPath = '/mlenvironment/models/'
         models = []
 
         for dir in listdir(dirPath):
@@ -34,7 +33,15 @@ class MlModelListResource(Resource):
 
     def post(self):
 
-        dirPath = '/mlenvironment/models'
+        parser = reqparse.RequestParser()
+        parser.add_argument('createExampleModel', type=bool, required=False, location='args')
+        args = parser.parse_args()
+        b_example_model = True
+
+        if args['createExampleModel'] is None:
+            b_example_model = False
+
+        dirPath = '/mlenvironment/models/'
 
         models = []
 
@@ -48,8 +55,8 @@ class MlModelListResource(Resource):
         else:
             new_model_n = int(models[0]) + 1
 
-        new_model_dir = dirPath + '/mlmodel_' + str(new_model_n)
-        create_model_dir(new_model_dir)
+        new_model_dir = dirPath + 'mlmodel_' + str(new_model_n)
+        create_model_dir(new_model_dir, b_example_model)
 
         modelFiles = []
         for file in listdir(new_model_dir + '/'):
@@ -93,10 +100,13 @@ class MlModelResource(Resource):
         return 'model' + str(model_id) + ' was removed', 201
     
 
-def create_model_dir(model_dir):
+def create_model_dir(model_dir, b_example_model):
         
     os.mkdir(model_dir)
     shutil.chown(model_dir, 'jupyter')
+
+    if not b_example_model:
+        return
 
     if os.path.exists('/ketos_data/ketos_predict_example.csv'):
         model_path = model_dir + '/ketos_predict_example.csv'
