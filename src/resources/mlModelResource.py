@@ -38,7 +38,7 @@ class MlModelListResource(Resource):
         args = parser.parse_args()
         b_example_model = True
 
-        if args['createExampleModel'] is None:
+        if args['createExampleModel'] is None or not args['createExampleModel']:
             b_example_model = False
 
         dirPath = '/mlenvironment/models/'
