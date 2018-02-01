@@ -13,7 +13,7 @@ from flask_restful_swagger_2 import swagger, Resource
 from nbformat import v4
 from rdb.models.user import User, get_user_by_username
 from rdb.rdb import db
-
+from flask_restplus import inputs
 
 class MlModelListResource(Resource):
     def __init__(self):
@@ -30,11 +30,10 @@ class MlModelListResource(Resource):
 
         return models
 
-
     def post(self):
-
+        
         parser = reqparse.RequestParser()
-        parser.add_argument('createExampleModel', type=bool, required=False, location='args')
+        parser.add_argument('createExampleModel', type=inputs.boolean, required=False, location='args')
         args = parser.parse_args()
         b_example_model = True
 

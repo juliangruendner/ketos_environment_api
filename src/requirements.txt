@@ -8,3 +8,4 @@ docker
 IPython
 cerberus
 flask-restful-swagger-2
+flask_restplus
