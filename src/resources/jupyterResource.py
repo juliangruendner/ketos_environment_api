@@ -16,8 +16,8 @@ class JupyterResource(Resource):
     def post(self):
 
         notebook_list = get_running_jupyters()
-        
-        if len(notebook_list) > 0 :
+
+        if len(notebook_list) > 0:
             return self.abort_if_jupyter_running()
 
         jupyter_token = uuid.uuid4().hex
