@@ -1,30 +1,39 @@
-from flask_restful import reqparse, abort
+from flask import g
+from flask_restful import reqparse, abort, fields, marshal_with
 from flask_restful_swagger_2 import swagger, Resource
+from rdb.models.user import User, get_user_by_username
+from rdb.rdb import db
+from flask_httpauth import HTTPBasicAuth
 import os
+from os import listdir
+from os.path import isdir
 import shutil
+from nbformat import v4
 import json
+import IPython
 from ketosJupyter.ketosNotebookProcessor import KetosNotebookProcessor
 from cerberus import Validator
 
 parser = reqparse.RequestParser()
 parser.add_argument('dataUrl', type=str, required=True, location='args')
 
-def feature_set_validator(value):
-    FEATURE_SET_SCHEMA = {
-        'resource': {'required': True, 'type': 'string'},
-        'key': {'required': True, 'type': 'string'},
-        'value': {'required': True, 'type': 'string'}
-    }
 
-    v = Validator(FEATURE_SET_SCHEMA)
-    if v.validate(value):
-        return value
-    else:
-        raise ValueError(json.dumps(v.errors))
+
+def feature_set_validator(value):
+   FEATURE_SET_SCHEMA = {
+       'resource': {'required': True, 'type': 'string'},
+        'key': {'required': True, 'type': 'string'},
+        'value': {'required': True,'type': 'string'}
+       }
+   v = Validator(FEATURE_SET_SCHEMA)
+   if v.validate(value):
+       return value
+   else:
+       raise ValueError(json.dumps(v.errors))
 
 
 class MlModelExecutorResource(Resource):
-
+    
     def __init__(self):
         super(MlModelExecutorResource, self).__init__()
 
@@ -50,6 +59,7 @@ class MlModelExecutorResource(Resource):
 
         return {'model_name': 'mlmodel_' + str(model_id), 'data_url': data_url, 'prediction': prediction}, 201
 
+
     def delete(self, model_id):
 
         model_dir_path = '/mlenvironment/models/mlmodel_' + str(model_id)
@@ -60,3 +70,8 @@ class MlModelExecutorResource(Resource):
         shutil.rmtree(model_dir_path)
 
         return 'model' + str(model_id) + ' was removed', 201
+
+
+
+
+        
