@@ -13,6 +13,20 @@ class MlModelListResource(Resource):
     def __init__(self):
         super(MlModelListResource, self).__init__()
 
+    '''
+    @swagger.doc({
+        "summary": "get all models",
+        "tags": ["models"],
+        "produces": [
+            "application/json"
+        ],
+        "description": 'get all models',
+        "responses": {
+            "200": {
+                "description": "json with info about all models "
+            }
+        }
+    })'''
     def get(self):
 
         dirPath = '/mlenvironment/models/'
@@ -23,7 +37,29 @@ class MlModelListResource(Resource):
                 models.append(dir)
 
         return models
-
+    '''
+    @swagger.doc({
+        "summary": "create model",
+        "tags": ["models"],
+        "produces": [
+            "application/json"
+        ],
+        "description": 'create a model',
+        "parameters": [
+            {
+                "name": "createExampleModel",
+                "in": "path",
+                "type": bool,
+                "description": "creates example model data in fileys",
+                "required": False
+            }
+        ],
+        "responses": {
+            "200": {
+                "description": "json with info about model and its files"
+            }
+        }
+    })'''
     def post(self):
 
         parser = reqparse.RequestParser()
@@ -65,6 +101,28 @@ class MlModelResource(Resource):
     def abort_if_ml_model_doesnt_exist(self, model_id):
         abort(404, message="model {} doesn't exist".format(model_id))
 
+    @swagger.doc({
+        "summary": "get info for model",
+        "tags": ["model"],
+        "produces": [
+            "application/json"
+        ],
+        "description": 'Get information about a specific model.',
+        "parameters": [
+            {
+                "name": "mode_id",
+                "in": "path",
+                "type": "string",
+                "description": "The ID of the model to be retrieved.",
+                "required": True
+            }
+        ],
+        "responses": {
+            "200": {
+                "description": "Retrieved Model Information as json."
+            }
+        }
+    })
     def get(self, model_id):
         model_dir_path = '/mlenvironment/models/mlmodel_' + str(model_id)
 
@@ -80,6 +138,28 @@ class MlModelResource(Resource):
 
         return {'model_name': 'mlmodel_' + str(model_id), 'model_files': modelFiles, 'model_notebook': nb}, 201
 
+    @swagger.doc({
+        "summary": "delete model",
+        "tags": ["model"],
+        "produces": [
+            "application/json"
+        ],
+        "description": 'delete a specific model',
+        "parameters": [
+            {
+                "name": "mode_id",
+                "in": "path",
+                "type": "string",
+                "description": "The ID of the model to be deleted.",
+                "required": True
+            }
+        ],
+        "responses": {
+            "200": {
+                "description": "model id of model which was removed"
+            }
+        }
+    })
     def delete(self, model_id):
         model_dir_path = '/mlenvironment/models/mlmodel_' + str(model_id)
 

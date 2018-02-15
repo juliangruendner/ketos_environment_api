@@ -30,6 +30,35 @@ class MlModelExecutorResource(Resource):
     def abort_if_ml_model_doesnt_exist(self, model_id):
         abort(404, message="model {} doesn't exist".format(model_id))
 
+    @swagger.doc({
+        "summary": "execute a model with given input data url",
+        "tags": ["model executor"],
+        "produces": [
+            "application/json"
+        ],
+        "description": 'Get information about a specific model.',
+        "parameters": [
+            {
+                "name": "model_id",
+                "in": "path",
+                "type": "string",
+                "description": "The ID of the model to be executed",
+                "required": True
+            },
+            {
+                "name": "dataUrl",
+                "in": "query",
+                "type": "string",
+                "description": "the url from which the data can be downloaded as csv file",
+                "required": True
+            }
+        ],
+        "responses": {
+            "200": {
+                "description": "the model name, data url and a list of prediction as json"
+            }
+        }
+    })
     def get(self, model_id):
         args = parser.parse_args()
         data_url = args['dataUrl']
@@ -48,14 +77,3 @@ class MlModelExecutorResource(Resource):
         prediction = nb_processor.ketos_get_nb_output()
 
         return {'model_name': 'mlmodel_' + str(model_id), 'data_url': data_url, 'prediction': prediction}, 201
-
-    def delete(self, model_id):
-
-        model_dir_path = '/mlenvironment/models/mlmodel_' + str(model_id)
-
-        if not os.path.isdir(model_dir_path):
-            self.abort_if_ml_model_doesnt_exist(model_id)
-
-        shutil.rmtree(model_dir_path)
-
-        return 'model' + str(model_id) + ' was removed', 201
