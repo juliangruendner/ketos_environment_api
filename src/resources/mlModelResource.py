@@ -47,14 +47,14 @@ class MlModelListResource(Resource):
         "parameters": [
             {
                 "name": "createExampleModel",
-                "in": "path",
+                "in": "query",
                 "type": "boolean",
                 "description": "creates example model data in fileys",
                 "required": False
             }
         ],
         "responses": {
-            "200": {
+            "201": {
                 "description": "json with info about model and its files"
             }
         }
