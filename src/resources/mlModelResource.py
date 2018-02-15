@@ -13,7 +13,6 @@ class MlModelListResource(Resource):
     def __init__(self):
         super(MlModelListResource, self).__init__()
 
-    '''
     @swagger.doc({
         "summary": "get all models",
         "tags": ["models"],
@@ -26,7 +25,7 @@ class MlModelListResource(Resource):
                 "description": "json with info about all models "
             }
         }
-    })'''
+    })
     def get(self):
 
         dirPath = '/mlenvironment/models/'
@@ -37,7 +36,7 @@ class MlModelListResource(Resource):
                 models.append(dir)
 
         return models
-    '''
+
     @swagger.doc({
         "summary": "create model",
         "tags": ["models"],
@@ -49,7 +48,7 @@ class MlModelListResource(Resource):
             {
                 "name": "createExampleModel",
                 "in": "path",
-                "type": bool,
+                "type": "boolean",
                 "description": "creates example model data in fileys",
                 "required": False
             }
@@ -59,7 +58,7 @@ class MlModelListResource(Resource):
                 "description": "json with info about model and its files"
             }
         }
-    })'''
+    })
     def post(self):
 
         parser = reqparse.RequestParser()
