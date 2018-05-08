@@ -74,8 +74,13 @@ ARG TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow
 
 RUN pip3 --no-cache-dir install --upgrade ${TF_BINARY_URL}
 
+RUN apt-get install -y python-flask
+
+RUN pip3 install flask Flask-HTTPAuth Flask-RESTful flask_sqlalchemy passlib psycopg2 docker IPython cerberus flask-restful-swagger-2 flask_restplus flask-cors
+
 RUN pip install --upgrade pip \
     && pip install pip -U \
+	&& pip install flask \
     && pip install jupyter numpy scipy pandas sklearn matplotlib tensorflow psycopg2 psycopg2-binary\ 
     && rm -r /root/.cache/pip
 
