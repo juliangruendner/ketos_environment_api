@@ -4,6 +4,7 @@ from flask_restful_swagger_2 import Api
 from resources.mlModelResource import MlModelListResource, MlModelResource
 from resources.jupyterResource import JupyterResource
 from resources.mlModelExecutorResource import MlModelExecutorResource
+from resources.swaggerResource import Swagger
 from flask_cors import CORS
 
 
@@ -16,6 +17,7 @@ api.add_resource(MlModelListResource, '/models', endpoint='models')
 api.add_resource(MlModelResource, '/models/<int:model_id>', endpoint='model')
 api.add_resource(JupyterResource, '/jupyter', endpoint='jupyter')
 api.add_resource(MlModelExecutorResource, '/models/<string:model_id>/execute', endpoint='executor')
+api.add_resource(Swagger, '/swagger', endpoint='swaggerhtml')
 
 if __name__ == '__main__':
     # connect_to_db(app, 'postgresql://mad:MAD@db:5432/mad')
