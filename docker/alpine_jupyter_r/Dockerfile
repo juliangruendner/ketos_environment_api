@@ -1,4 +1,4 @@
-FROM alpine_jupyter:latest
+FROM ketos.ai:5043/alpine_jupyter:latest
 
 RUN apk update
 RUN apk add --no-cache R R-dev R-doc curl libressl-dev curl-dev libxml2-dev gcc g++ git coreutils bash ncurses
