@@ -1,0 +1,9 @@
+FROM ketos.ai:5043/mlservicecontainer_r
+
+ADD src /mlService_dockerApi/src
+
+CMD cd mlService_dockerApi && \
+    git pull && \
+    cd src/ && \
+    chmod +x startup.sh && \
+    ./startup.sh
