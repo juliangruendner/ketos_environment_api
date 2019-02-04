@@ -1,2 +1,2 @@
 cd /mlenvironment
-su jupyter bash -c 'jupyter notebook list'
+bash -c 'jupyter notebook list'

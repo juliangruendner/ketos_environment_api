@@ -1,0 +1,7 @@
+FROM ketos.ai:5043/jupyter_ds
+
+ADD src /mlService_dockerApi/src
+
+CMD cd /mlService_dockerApi/src && \
+    chmod +x startup.sh && \
+    ./startup.sh

@@ -173,7 +173,7 @@ class MlModelResource(Resource):
 def create_model_dir(model_dir, b_example_model):
 
     os.mkdir(model_dir)
-    shutil.chown(model_dir, 'jupyter')
+    shutil.chown(model_dir, 'jovyan')
 
     if not b_example_model:
         return
@@ -181,12 +181,12 @@ def create_model_dir(model_dir, b_example_model):
     if os.path.exists('/ketos_data/ketos_predict_example.csv'):
         model_path = model_dir + '/ketos_predict_example.csv'
         shutil.copyfile('/ketos_data/ketos_predict_example.csv', model_path)
-        shutil.chown(model_path, 'jupyter')
+        shutil.chown(model_path, 'jovyan')
 
     if os.path.exists('/ketos_data/model.ipynb'):
         model_path = model_dir + '/model.ipynb'
         shutil.copyfile('/ketos_data/model.ipynb', model_path)
-        shutil.chown(model_path, 'jupyter')
+        shutil.chown(model_path, 'jovyan')
     else:
         fd = open(model_path + '/model.ipynb', 'w')
 

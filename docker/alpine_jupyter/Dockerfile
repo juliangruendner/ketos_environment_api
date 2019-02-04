@@ -5,15 +5,15 @@ MAINTAINER eip
 
 ENV LANGUAGE=C.UTF-8 LC_ALL=C.UTF-8 LANG=C.UTF-8
 
-RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
-	&& apk update && apk upgrade \
-	&& apk add --no-cache tini python3 libstdc++ openblas freetype wget ca-certificates \
-	&& python3 -m ensurepip && rm -r /usr/lib/python*/ensurepip \
-	&& pip3 install --upgrade pip setuptools \
-	&& apk add --no-cache --virtual .build-deps@testing python3-dev make cmake clang clang-dev g++ linux-headers libtbb@testing libtbb-dev@testing openblas-dev freetype-dev \
-	&& export CC=/usr/bin/clang CXX=/usr/bin/clang++ \
-	&& ln -s /usr/include/locale.h /usr/include/xlocale.h \
-	&& mkdir -p /opt/tmp && cd /opt/tmp \
+RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+RUN apk update && apk upgrade
+RUN apk add --no-cache tini python3 libstdc++ openblas freetype wget ca-certificates
+RUN python3 -m ensurepip && rm -r /usr/lib/python*/ensurepip
+RUN pip3 install --upgrade pip setuptools
+RUN apk add --no-cache --virtual .build-deps@testing python3-dev make cmake clang clang-dev g++ linux-headers openblas-dev freetype-dev
+RUN export CC=/usr/bin/clang CXX=/usr/bin/clang++
+RUN ln -s /usr/include/locale.h /usr/include/xlocale.h
+RUN mkdir -p /opt/tmp && cd /opt/tmp \
 	&& pip3 download -d /opt/tmp numpy \
 	&& unzip -q numpy*.zip \
 	&& cd numpy* && echo "Building numpy..." \
