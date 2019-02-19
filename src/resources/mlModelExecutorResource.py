@@ -5,6 +5,7 @@ import shutil
 import json
 from ketosJupyter.ketosNotebookProcessor import KetosNotebookProcessor
 from cerberus import Validator
+from util.brainApiAccess import BrainApiAccess
 
 parser = reqparse.RequestParser()
 parser.add_argument('dataUrl', type=str, required=True, location='args')
@@ -23,7 +24,7 @@ def feature_set_validator(value):
 
 
 class MlModelExecutorResource(Resource):
-
+    @BrainApiAccess()
     def __init__(self):
         super(MlModelExecutorResource, self).__init__()
 

@@ -8,8 +8,11 @@ import nbformat
 from flask_restful import abort, reqparse
 from flask_restful_swagger_2 import swagger, Resource
 from flask_restplus import inputs
+from util.brainApiAccess import BrainApiAccess
 
 class MlModelListResource(Resource):
+
+    @BrainApiAccess()
     def __init__(self):
         super(MlModelListResource, self).__init__()
 
@@ -94,6 +97,8 @@ class MlModelListResource(Resource):
 
 
 class MlModelResource(Resource):
+
+    @BrainApiAccess()
     def __init__(self):
         super(MlModelResource, self).__init__()
 
