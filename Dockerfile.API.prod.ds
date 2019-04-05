@@ -1,4 +1,4 @@
-FROM ketos.ai:5043/jupyter_ds
+FROM jupyter_ds:latest
 
 ADD src /mlService_dockerApi/src
 

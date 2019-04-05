@@ -53,7 +53,7 @@ class JupyterResource(Resource):
             return self.abort_if_jupyter_running()
 
         jupyter_token = uuid.uuid4().hex
-        subprocess.run(["./startJupyter.sh", str(jupyter_token)], shell=True)
+        subprocess.run(["./startJupyter.sh %s" % str(jupyter_token)], shell=True)
 
         return {"jupyter_token": jupyter_token}, 201
 

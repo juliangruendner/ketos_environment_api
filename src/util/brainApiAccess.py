@@ -27,6 +27,6 @@ def is_brain_api():
     ip_list = list(set(ip_list))
 
     if not (request.environ['REMOTE_ADDR'] in ip_list):
-            return True
+            return False
     
     return True
